@@ -4,9 +4,10 @@ const path = require('path');
 const expect = require('chai').expect;
 const server = require('./mockServer');
 
-const httpHandler = require('../js/httpHandler');
+const  httpHandler = require('../js/httpHandler');
+// const randomDirection = require(../js/)
 
-
+//const directions = ['left', 'right', 'up', 'down'];
 
 describe('server responses', () => {
 
@@ -22,7 +23,15 @@ describe('server responses', () => {
   });
 
   it('should respond to a GET request for a swim command', (done) => {
-    // write your test here
+    let {req, res} = server.mock('/', 'GET');
+
+    httpHandler.router(req, res);
+    expect(res._responseCode).to.equal(200);
+    expect(res._ended).to.equal(true);
+    //expect(res._data.toString()).to.include(['left', 'right', 'up', 'down']);
+    expect(['left', 'right', 'up', 'down']).to.include(res._data.toString());
+
+
     done();
   });
 
