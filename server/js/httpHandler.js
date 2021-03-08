@@ -44,12 +44,12 @@ module.exports.router = (req, res, next = ()=>{}) => {
 
     } else {
       res.writeHead(200, headers);
-    var directionRandom = randomDirection();
-    console.log('messages**', messageQueue)
-    var direction = messageQueue.dequeue() || randomDirection();
-    console.log('direction' , direction)
-    res.end(direction);
-    next();
+      var directionRandom = randomDirection();
+      // console.log('messages**', messageQueue)
+      var direction = messageQueue.dequeue() || randomDirection();
+      // console.log('direction' , direction)
+      res.end(direction);
+      next();
     }
 
   } else {
